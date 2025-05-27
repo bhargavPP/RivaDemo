@@ -3,18 +3,28 @@ using RivaDemo.Services;
 using System.Text.Json;
 
 namespace TestProject.TestClass;
-// ----------------------------------------------
-// Unit Tests: BatchSyncProcessor
-// - Loads test data from JSON files
-// - Validates correct processing of jobs
-// - Checks that invalid jobs are flagged appropriately
-// - Demonstrates test coverage using realistic scenarios
-// ----------------------------------------------
+
+/// <summary>
+/// BatchSyncProcessorTests
+/// -----------------------
+/// Unit tests for BatchSyncProcessor functionality.
+/// - Loads test cases from external JSON file.
+/// - Validates sync behavior based on token presence.
+/// - Asserts expected status and error handling for each job.
+/// 
+/// Structure:
+/// TestCases/BatchSyncProcessorTestsCases.json -> holds mock job data
+/// This file simulates different job scenarios for input.
+/// </summary>
 
 public class BatchSyncProcessorTests
 {
     private static readonly string JsonFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestCases", "BatchSyncProcessorTestsCases.json");
-
+   
+    /// <summary>
+    /// Reads and deserializes test jobs from JSON file.
+    /// Ensures consistent, repeatable test inputs from a separate file.
+    /// </summary>
     private List<SyncJob> LoadTestJobs()
     {
         var json = File.ReadAllText(JsonFilePath);
@@ -25,6 +35,14 @@ public class BatchSyncProcessorTests
 
         return jobs!;
     }
+
+    /// <summary>
+    /// Test Case:
+    /// Verifies that a sync job fails if the user token is missing or invalid.
+    /// - Loads job data from JSON
+    /// - Executes BatchSyncProcessor
+    /// - Asserts job status and error message
+    /// </summary>
 
     [Test]
     public void ProcessAll_ShouldMarkJobAsFailed_WhenTokenIsMissing()
@@ -44,6 +62,13 @@ public class BatchSyncProcessorTests
         Assert.AreEqual("Missing or invalid CRM token.", failedJob.ErrorMessage);
     }
 
+    /// <summary>
+    /// Test Case:
+    /// Verifies that a sync job success if the user token is valid.
+    /// - Loads job data from JSON
+    /// - Executes BatchSyncProcessor
+    /// - Asserts job status and error message
+    /// </summary>
     [Test]
     public void ProcessAll_ShouldMarkJobAsSuccess_WhenTokenIsPresent()
     {
