@@ -8,6 +8,14 @@ using RivaDemo.Services.Interfaces;
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Starting Synching data");
 
+// ----------------------------------------------
+// Application Entry Point
+// - Configures Dependency Injection (DI) container
+// - Seeds job data from InputSeeds
+// - Registers service implementations
+// - Resolves IBatchSyncProcessor and executes ProcessAll()
+// ----------------------------------------------
+
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>

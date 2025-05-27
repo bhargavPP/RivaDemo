@@ -3,6 +3,13 @@ using RivaDemo.Services;
 using System.Text.Json;
 
 namespace TestProject.TestClass;
+// ----------------------------------------------
+// Unit Tests: BatchSyncProcessor
+// - Loads test data from JSON files
+// - Validates correct processing of jobs
+// - Checks that invalid jobs are flagged appropriately
+// - Demonstrates test coverage using realistic scenarios
+// ----------------------------------------------
 
 public class BatchSyncProcessorTests
 {

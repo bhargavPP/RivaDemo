@@ -1,5 +1,12 @@
 ﻿using RivaDemo.Models;
 
+// ----------------------------------------------
+// InputSeeds
+// - Provides a list of SyncJob seed data
+// - Used by DI to simulate data loading
+// ----------------------------------------------
+
+
 namespace RivaDemo.Configuration
 {
     //Static class for seeding data to Program

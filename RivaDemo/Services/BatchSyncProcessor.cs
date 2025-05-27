@@ -1,7 +1,15 @@
 using RivaDemo.Models;
 using RivaDemo.Services.Interfaces;
+using System.Diagnostics;
 
 namespace RivaDemo.Services;
+// ----------------------------------------------
+// BatchSyncProcessor
+// - Implements IBatchSyncProcessor
+// - Processes a batch of SyncJob items
+// - Validates each job using ISyncValidator
+// - Updates job status and logs result
+// ----------------------------------------------
 
 public class BatchSyncProcessor : IBatchSyncProcessor
 {
@@ -10,10 +18,11 @@ public class BatchSyncProcessor : IBatchSyncProcessor
 
     public BatchSyncProcessor(List<SyncJob> jobs, ISyncValidator validator)
     {
-        _jobs = jobs??throw new ArgumentNullException(nameof(jobs));
+        _jobs = jobs ?? throw new ArgumentNullException(nameof(jobs));
         _validator = validator ?? throw new ArgumentNullException(nameof(validator));
     }
 
+    ///<inheritdoc cref="IBatchSyncProcessor.ProcessAll"/>
     public void ProcessAll()
     {
         foreach (var job in _jobs)
@@ -23,7 +32,7 @@ public class BatchSyncProcessor : IBatchSyncProcessor
             if (!_validator.IsValid(job, out var error))
             {
                 job.Status = "Failed";
-                job.ErrorMessage = error;   
+                job.ErrorMessage = error;
                 Console.WriteLine($"[Error] {error}");
                 continue;
             }
