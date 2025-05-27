@@ -1,6 +1,4 @@
-﻿using RivaDemo.Models;
-
-namespace RivaDemo.Services.Interfaces;
+﻿namespace RivaDemo.Services.Interfaces;
 
 public interface IBatchSyncProcessor
 {

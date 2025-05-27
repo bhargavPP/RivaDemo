@@ -8,7 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Riva Problem Statement\" />
+    <Compile Remove="Riva Problem Statement\**" />
+    <EmbeddedResource Remove="Riva Problem Statement\**" />
+    <None Remove="Riva Problem Statement\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DependancyInjection" Version="1.0.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
   </ItemGroup>
 
 </Project>
