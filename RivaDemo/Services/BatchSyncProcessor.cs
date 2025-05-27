@@ -10,8 +10,8 @@ public class BatchSyncProcessor : IBatchSyncProcessor
 
     public BatchSyncProcessor(List<SyncJob> jobs, ISyncValidator validator)
     {
-        _jobs = jobs;
-        _validator = validator;
+        _jobs = jobs??throw new ArgumentNullException(nameof(jobs));
+        _validator = validator ?? throw new ArgumentNullException(nameof(validator));
     }
 
     public void ProcessAll()

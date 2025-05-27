@@ -1,6 +1,7 @@
-using IntelSyncLegacy.Models;
+using RivaDemo.Models;
+using RivaDemo.Services.Interfaces;
 
-namespace IntelSyncLegacy.Services;
+namespace RivaDemo.Services;
 
 public class SimpleTokenValidator : ISyncValidator
 {
