@@ -23,7 +23,7 @@ public class BatchSyncProcessor : IBatchSyncProcessor
             if (!_validator.IsValid(job, out var error))
             {
                 job.Status = "Failed";
-                job.ErrorMessage = error;
+                job.ErrorMessage = error;   
                 Console.WriteLine($"[Error] {error}");
                 continue;
             }

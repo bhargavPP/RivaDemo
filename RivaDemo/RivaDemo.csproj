@@ -8,14 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  
     <Compile Remove="Riva Problem Statement\**" />
     <EmbeddedResource Remove="Riva Problem Statement\**" />
     <None Remove="Riva Problem Statement\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DependancyInjection" Version="1.0.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+	  <PackageReference Include="NUnit" Version="3.13.3" />
+	  <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
   </ItemGroup>
 
 </Project>

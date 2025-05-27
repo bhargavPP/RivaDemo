@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35828.75 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RivaDemo", "RivaDemo\RivaDemo.csproj", "{FEFC7D8A-E815-4B54-824A-638A5AB9B0E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FEFC7D8A-E815-4B54-824A-638A5AB9B0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEFC7D8A-E815-4B54-824A-638A5AB9B0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEFC7D8A-E815-4B54-824A-638A5AB9B0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

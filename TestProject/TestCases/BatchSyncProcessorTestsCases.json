@@ -1,0 +1,26 @@
+[
+    {
+        "Id": 1,
+        "User": {
+            "Email": "alice@example.com",
+            "Platform": "Salesforce",
+            "Token": "token123"
+        },
+        "ObjectType": "Contact",
+        "Payload": "{ \"email\": \"alice@example.com\", \"name\": \"Alice\" }",
+        "SyncTime": "2025-05-24T12:00:00Z",
+        "Status": "Pending"
+    },
+    {
+        "Id": 2,
+        "User": {
+            "Email": "bob@example.com",
+            "Platform": "Outlook",
+            "Token": ""
+        },
+        "ObjectType": "Meeting",
+        "Payload": "{ \"subject\": \"Weekly Sync\", \"organizer\": \"bob@example.com\" }",
+        "SyncTime": "2025-05-24T12:00:00Z",
+        "Status": "Pending"
+    }
+]
