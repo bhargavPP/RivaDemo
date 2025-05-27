@@ -35,3 +35,31 @@ RivaDemo/
 ├── Configuration/ # Input seed data (static job data)
 ├── Program.cs # Entry point and DI configuration
 └── RivaDemo.csproj # Project file
+
+
+
+
+
+# TestProject
+
+## Overview
+Unit tests for the RivaDemo project ensuring correctness of batch sync processing logic and validation rules.
+
+## Testing Approach
+- Data-driven tests using JSON seed data for realistic scenarios.
+- Tests focus on validating:
+  - Token presence and validity.
+  - Correct status updates on sync jobs.
+  - Proper error message propagation.
+
+## Folder Structure
+TestProject/
+│
+├── TestCases/ # JSON files with test seed data
+├── TestClass/ # NUnit test classes
+└── TestProject.csproj # Test project file
+
+
+## Running Tests
+1. Ensure you have NUnit and NUnit3TestAdapter installed.
+2. Run tests via your IDE Test Explorer or command line:
