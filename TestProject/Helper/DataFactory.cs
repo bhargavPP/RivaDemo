@@ -3,6 +3,15 @@ using System.Text.Json;
 
 namespace TestProject.Infrastructor
 {
+    /// <summary>
+    /// DataFactory
+    /// -----------
+    /// Provides mock job data for testing purposes.
+    /// 
+    /// Note:
+    /// This class simulates data loading from a JSON file.
+    /// In production or advanced test scenarios, this can be replaced with a mock of DbContext or an in-memory database.
+    /// </summary>
     public class DataFactory
     {
 
