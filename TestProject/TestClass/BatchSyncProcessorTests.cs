@@ -1,6 +1,7 @@
 using RivaDemo.Models;
 using RivaDemo.Services;
 using System.Text.Json;
+using TestProject.Infrastructor;
 
 namespace TestProject.TestClass;
 
@@ -19,22 +20,37 @@ namespace TestProject.TestClass;
 
 public class BatchSyncProcessorTests
 {
-    private static readonly string JsonFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestCases", "BatchSyncProcessorTestsCases.json");
-   
-    /// <summary>
-    /// Reads and deserializes test jobs from JSON file.
-    /// Ensures consistent, repeatable test inputs from a separate file.
-    /// </summary>
-    private List<SyncJob> LoadTestJobs()
+    private readonly Fixture _fixture;
+    private readonly DataFactory _dataFactory;
+    public BatchSyncProcessorTests()
     {
-        var json = File.ReadAllText(JsonFilePath);
-        var jobs = JsonSerializer.Deserialize<List<SyncJob>>(json, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        });
-
-        return jobs!;
+        _fixture = new Fixture();
+        _dataFactory = _fixture.DataFactory;
     }
+
+    //[SetUp]
+    //public void SetUp()
+    //{
+    //    _dataFactory.Reset(); // Ensure clean state for each test
+    //}
+
+
+    /// <summary>
+    /// Test Case:
+    /// Verifies that the JSON file loads correctly and contains expected jobs.
+    /// </summary>
+    [Test]
+    public void DataFactory_ShouldLoadJobsFromJson()
+    {
+        // Act
+        var jobs = _dataFactory.GetAllSyncJobs();
+
+        // Assert
+        Assert.IsNotEmpty(jobs, "No jobs loaded from JSON file.");
+        Assert.IsTrue(jobs.Any(j => j.User?.Email == "alice@example.com"), "Expected job with email 'alice@example.com' not found in JSON data.");
+        Assert.IsTrue(jobs.Any(j => j.User?.Email == "bob@example.com"), "Expected job with email 'bob@example.com' not found in JSON data.");
+    }
+
 
     /// <summary>
     /// Test Case:
@@ -48,7 +64,7 @@ public class BatchSyncProcessorTests
     public void ProcessAll_ShouldMarkJobAsFailed_WhenTokenIsMissing()
     {
         // Arrange
-        var jobs = LoadTestJobs();
+        var jobs = _dataFactory.GetAllSyncJobs(); // Load from JSON
         var validator = new SimpleTokenValidator();
         var processor = new BatchSyncProcessor(jobs, validator);
 
@@ -57,9 +73,9 @@ public class BatchSyncProcessorTests
 
         // Assert
         var failedJob = jobs.FirstOrDefault(j => j.User.Email == "bob@example.com");
-        Assert.NotNull(failedJob);
-        Assert.AreEqual("Failed", failedJob.Status);
-        Assert.AreEqual("Missing or invalid CRM token.", failedJob.ErrorMessage);
+        Assert.NotNull(failedJob, "Expected job with email 'bob@example.com' not found.");
+        Assert.AreEqual("Failed", failedJob.Status, "Job status should be 'Failed'.");
+        Assert.AreEqual("Missing or invalid CRM token.", failedJob.ErrorMessage, "Expected error message not set.");
     }
 
     /// <summary>
@@ -73,7 +89,7 @@ public class BatchSyncProcessorTests
     public void ProcessAll_ShouldMarkJobAsSuccess_WhenTokenIsPresent()
     {
         // Arrange
-        var jobs = LoadTestJobs();
+        var jobs = _dataFactory.GetAllSyncJobs(); // Load from JSON
         var validator = new SimpleTokenValidator();
         var processor = new BatchSyncProcessor(jobs, validator);
 
@@ -82,9 +98,10 @@ public class BatchSyncProcessorTests
 
         // Assert
         var successJob = jobs.FirstOrDefault(j => j.User.Email == "alice@example.com");
-        Assert.NotNull(successJob);
-        Assert.AreEqual("Success", successJob.Status);
-        Assert.IsTrue(string.IsNullOrEmpty(successJob.ErrorMessage));
+        Assert.NotNull(successJob, "Expected job with email alice@example.com not found.");
+        Assert.AreEqual("Success", successJob.Status, "Job status should be 'Success'.");
+        Assert.IsTrue(string.IsNullOrEmpty(successJob.ErrorMessage), "Error message should be empty.");
+
     }
 
 }
