@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RivaDemo", "RivaDemo\RivaDemo.csproj", "{FEFC7D8A-E815-4B54-824A-638A5AB9B0E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryLeakDemo", "MemoryLeakDemo\MemoryLeakDemo.csproj", "{3F17F643-1803-4F12-9256-44E3C326F11D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCalanderSync", "GCalanderSync\GCalanderSync.csproj", "{360CDF68-185F-432B-8861-9363A190DD11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C8B522C-4EFA-4787-8818-7DBBD808C0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F17F643-1803-4F12-9256-44E3C326F11D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F17F643-1803-4F12-9256-44E3C326F11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F17F643-1803-4F12-9256-44E3C326F11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F17F643-1803-4F12-9256-44E3C326F11D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360CDF68-185F-432B-8861-9363A190DD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360CDF68-185F-432B-8861-9363A190DD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360CDF68-185F-432B-8861-9363A190DD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360CDF68-185F-432B-8861-9363A190DD11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
