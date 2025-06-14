@@ -5,6 +5,7 @@ using RivaDemo.Models;
 using RivaDemo.Services;
 using RivaDemo.Services.Interfaces;
 
+
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Starting Synching data");
 
@@ -15,9 +16,10 @@ Console.WriteLine("Starting Synching data");
 // - Registers service implementations
 // - Resolves IBatchSyncProcessor and executes ProcessAll()
 // ----------------------------------------------
+try
+{
 
-
-var host = Host.CreateDefaultBuilder(args)
+    var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         // Register seed data
@@ -29,8 +31,15 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-var processor = host.Services.GetRequiredService<IBatchSyncProcessor>();
+    var processor = host.Services.GetRequiredService<IBatchSyncProcessor>();
 
 
-processor.ProcessAll();
+    processor.ProcessAll();
 
+
+    
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"[Fatal Error] An error occurred during startup or processing: {ex.Message}");
+}

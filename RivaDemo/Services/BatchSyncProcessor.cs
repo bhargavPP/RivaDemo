@@ -25,20 +25,31 @@ public class BatchSyncProcessor : IBatchSyncProcessor
     ///<inheritdoc cref="IBatchSyncProcessor.ProcessAll"/>
     public void ProcessAll()
     {
+
         foreach (var job in _jobs)
         {
-            Console.WriteLine($"[Sync] {job.User.Email} - {job.ObjectType} via {job.User.Platform}");
+            try
+            {
+                Console.WriteLine($"[Sync] {job.User.Email} - {job.ObjectType} via {job.User.Platform}");
 
-            if (!_validator.IsValid(job, out var error))
+                if (!_validator.IsValid(job, out var error))
+                {
+                    job.Status = "Failed";
+                    job.ErrorMessage = error;
+                    Console.WriteLine($"[Error] {error}");
+                    continue;
+                }
+
+                job.Status = "Success";
+                Console.WriteLine($"[OK] Synced {job.ObjectType} for {job.User.Email}");
+            }
+            catch (Exception ex)
             {
                 job.Status = "Failed";
-                job.ErrorMessage = error;
-                Console.WriteLine($"[Error] {error}");
-                continue;
+                job.ErrorMessage = $"Unexpected error: {ex.Message}";
+                Console.WriteLine($"[Exception] Failed to sync {job.User.Email}: {ex.Message}");
             }
-
-            job.Status = "Success";
-            Console.WriteLine($"[OK] Synced {job.ObjectType} for {job.User.Email}");
         }
+
     }
 }

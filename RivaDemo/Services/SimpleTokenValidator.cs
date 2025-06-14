@@ -14,14 +14,22 @@ public class SimpleTokenValidator : ISyncValidator
     /// <inheritdoc cref="ISyncValidator.IsValid(SyncJob, out string)"/>
     public bool IsValid(SyncJob job, out string errorMessage)
     {
-        errorMessage = string.Empty;
-
-        if (string.IsNullOrWhiteSpace(job.User?.Token))
+        try
         {
-            errorMessage = "Missing or invalid CRM token.";
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(job.User?.Token))
+            {
+                errorMessage = "Missing or invalid CRM token.";
+                return false;
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Validation failed due to unexpected error: {ex.Message}";
             return false;
         }
-
-        return true;
     }
 }
